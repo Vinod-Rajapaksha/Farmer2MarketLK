@@ -33,13 +33,13 @@ const seedDatabase = async () => {
     // 1. Create Admin
     const adminUser = await User.create({
       name: 'System Admin',
-      email: 'admin@farmer2market.lk',
+      email: 'admin@gmail.com',
       passwordHash: adminPasswordHash,
       phone: '0710000000',
       district: 'Colombo',
       role: UserRole.ADMIN,
     });
-    console.log('Admin user created (admin@farmer2market.lk / admin123)');
+    console.log('Admin user created (admin@gmail.com / admin123)');
 
     // 2. Create sample Farmer
     const farmerUser = await User.create({

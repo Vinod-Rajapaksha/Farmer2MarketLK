@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import api from '../../services/api';
-import Navbar from '../../components/layout/Navbar';
 import { Users, Trash2 } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
+import { toast } from '../../store/toastStore';
 
 export default function AdminDashboardPage() {
   const { user } = useAuthStore();
@@ -15,12 +15,13 @@ export default function AdminDashboardPage() {
   });
 
   const handleDeleteUser = async (id: string, name: string) => {
-    if (confirm(`Are you sure you want to delete user ${name}?`)) {
+    if (window.confirm(`Are you sure you want to delete user ${name}?`)) {
       try {
         await api.delete(`/users/${id}`);
+        toast.success(`User ${name} deleted successfully`);
         refetch();
       } catch (error: any) {
-        alert(error.response?.data?.message || 'Failed to delete user');
+        toast.error(error.response?.data?.message || 'Failed to delete user');
       }
     }
   };
@@ -30,9 +31,7 @@ export default function AdminDashboardPage() {
   const adminCount = users?.filter((u: any) => u.role === 'ADMIN').length || 0;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Navbar />
-      
+    <div className="w-full">
       <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-slate-900">Admin Dashboard</h1>

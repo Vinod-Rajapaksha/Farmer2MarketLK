@@ -41,12 +41,12 @@ export default function Navbar() {
               <div className="h-6 w-px bg-slate-200 mx-2"></div>
               
               <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2 text-sm font-medium text-slate-700">
+                <Link to="/profile" className="flex items-center gap-2 text-sm font-medium text-slate-700 hover:text-primary-600 transition-colors">
                   <div className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-700">
                     <UserIcon className="w-4 h-4" />
                   </div>
                   <span className="hidden md:block">{user.name}</span>
-                </div>
+                </Link>
                 <button onClick={handleLogout} className="text-slate-500 hover:text-red-500 transition-colors">
                   <LogOut className="w-5 h-5" />
                 </button>

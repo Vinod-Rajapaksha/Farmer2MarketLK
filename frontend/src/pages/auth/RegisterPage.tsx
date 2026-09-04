@@ -6,8 +6,9 @@ export default function RegisterPage() {
     <div className="min-h-screen bg-background flex flex-col justify-center items-center p-4 py-12">
       <div className="w-full max-w-lg">
         <div className="text-center mb-8">
-          <Link to="/" className="text-3xl font-heading font-bold text-primary-600 inline-block mb-2">
-            🌾 Farmer2MarketLK
+          <Link to="/" className="inline-flex flex-col items-center gap-2 mb-2">
+            <img src="/logo1.png" alt="Farmer2MarketLK Logo" className="h-16 w-auto rounded-xl shadow-sm" />
+            <span className="text-3xl font-heading font-bold text-primary-600">Farmer2MarketLK</span>
           </Link>
           <h1 className="text-2xl font-bold text-slate-900 mt-4">Create Account</h1>
           <p className="text-slate-500 mt-1">Join the marketplace directly connecting farmers and buyers.</p>

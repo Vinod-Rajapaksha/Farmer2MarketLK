@@ -3,25 +3,7 @@ import { ArrowRight, Leaf, ShieldCheck, Sparkles } from 'lucide-react';
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <img src="/logo.jpeg" alt="Farmer2MarketLK Logo" className="h-10 w-auto rounded-md shadow-sm" />
-            <span className="font-heading font-bold text-xl text-primary-700">Farmer2MarketLK</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <Link to="/login" className="text-slate-600 hover:text-primary-600 font-medium transition-colors">
-              Login
-            </Link>
-            <Link to="/register" className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
-              Get Started
-            </Link>
-          </div>
-        </div>
-      </nav>
-
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Hero Section */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 text-center">
         <img src="/logo.jpeg" alt="Farmer2MarketLK Logo" className="w-32 h-32 mx-auto rounded-3xl shadow-xl mb-8 border-4 border-white" />
