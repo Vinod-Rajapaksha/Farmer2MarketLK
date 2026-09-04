@@ -1,10 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import api from '../../services/api';
 import { Link } from 'react-router-dom';
 import { Package, Plus, TrendingUp } from 'lucide-react';
-import Navbar from '../../components/layout/Navbar';
 
 export default function FarmerDashboardPage() {
+  const queryClient = useQueryClient();
   const { data, isLoading } = useQuery({
     queryKey: ['farmerListings'],
     queryFn: async () => {
@@ -15,11 +15,8 @@ export default function FarmerDashboardPage() {
 
   const activeCount = data?.filter((item: any) => item.status === 'AVAILABLE').length || 0;
   const soldCount = data?.filter((item: any) => item.status === 'SOLD').length || 0;
-
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Navbar />
-      
+    <div className="w-full">
       <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
           <div>

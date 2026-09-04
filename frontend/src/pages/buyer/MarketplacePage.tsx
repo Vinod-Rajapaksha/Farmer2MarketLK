@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import api from '../../services/api';
-import Navbar from '../../components/layout/Navbar';
 import { Link } from 'react-router-dom';
 import { Search, MapPin, Sparkles, Filter } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
@@ -30,11 +29,8 @@ export default function MarketplacePage() {
       return response.data.data;
     }
   });
-
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Navbar />
-      
+    <div className="w-full">
       <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         {user?.role === 'BUYER' && (
           <div className="mb-8 bg-gradient-to-r from-purple-600 to-primary-600 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">

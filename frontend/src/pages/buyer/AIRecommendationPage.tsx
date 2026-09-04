@@ -4,7 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useMutation } from '@tanstack/react-query';
 import api from '../../services/api';
-import Navbar from '../../components/layout/Navbar';
 import { Link } from 'react-router-dom';
 import { Sparkles, Loader2, ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 
@@ -36,10 +35,8 @@ export default function AIRecommendationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Navbar />
-      
-      <main className="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    <div className="w-full">
+      <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         <Link to="/marketplace" className="text-slate-500 hover:text-primary-600 font-medium flex items-center gap-1 mb-6 transition-colors w-fit">
           <ArrowLeft className="w-4 h-4" /> Back to Marketplace
         </Link>

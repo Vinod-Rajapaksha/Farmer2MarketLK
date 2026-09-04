@@ -4,9 +4,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import api from '../../services/api';
-import Navbar from '../../components/layout/Navbar';
 import { Loader2, ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { toast } from '../../store/toastStore';
 
 const createProduceSchema = z.object({
   name: z.string().min(2, 'Name is required'),
@@ -31,7 +30,6 @@ const SRI_LANKA_DISTRICTS = [
 const CATEGORIES = ['Vegetables', 'Fruits', 'Grains', 'Spices', 'Other'];
 
 export default function AddProducePage() {
-  const [error, setError] = useState('');
   const [imageFile, setImageFile] = useState<File | null>(null);
   const navigate = useNavigate();
 
@@ -41,7 +39,6 @@ export default function AddProducePage() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      setError('');
       const formData = new FormData();
       Object.entries(data).forEach(([key, value]) => {
         if (value !== undefined) {
@@ -57,30 +54,27 @@ export default function AddProducePage() {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       
-      navigate('/farmer/dashboard');
+      toast.success('Produce added successfully!');
+      navigate(-1);
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Failed to add produce');
+      toast.error(err.response?.data?.message || 'Failed to add produce');
     }
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Navbar />
-      
-      <main className="flex-grow max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
-        <Link to="/farmer/dashboard" className="text-primary-600 font-medium hover:underline flex items-center gap-1 mb-6">
-          <ArrowLeft className="w-4 h-4" /> Back to Dashboard
-        </Link>
+    <div className="w-full">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <button 
+          onClick={() => navigate(-1)} 
+          className="text-primary-600 font-medium hover:underline flex items-center gap-1 mb-6 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" /> Back
+        </button>
         
         <h1 className="text-3xl font-bold text-slate-900 mb-6">Add New Produce</h1>
         
         <div className="glass rounded-2xl p-6 sm:p-8">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            {error && (
-              <div className="p-3 text-sm text-red-500 bg-red-50 rounded-md border border-red-200">
-                {error}
-              </div>
-            )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>

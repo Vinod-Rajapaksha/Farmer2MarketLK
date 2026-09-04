@@ -1,7 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import api from '../../services/api';
-import Navbar from '../../components/layout/Navbar';
 import { ArrowLeft, MapPin, Phone, MessageCircle, Calendar, Package } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 
@@ -19,26 +18,24 @@ export default function ProduceDetailsPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background flex flex-col">
-        <Navbar />
-        <div className="flex-grow flex items-center justify-center">
+      <div className="w-full">
+        <main className="flex-grow flex justify-center items-center h-64">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-        </div>
+        </main>
       </div>
     );
   }
 
   if (error || !item) {
     return (
-      <div className="min-h-screen bg-background flex flex-col">
-        <Navbar />
-        <div className="flex-grow flex flex-col items-center justify-center p-4 text-center">
+      <div className="w-full">
+        <main className="flex-grow max-w-7xl mx-auto px-4 py-8 text-center">
           <h2 className="text-2xl font-bold text-slate-900 mb-2">Produce not found</h2>
           <p className="text-slate-500 mb-6">The listing you're looking for might have been removed or sold.</p>
           <Link to="/marketplace" className="bg-primary-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-primary-700">
             Back to Marketplace
           </Link>
-        </div>
+        </main>
       </div>
     );
   }
@@ -56,10 +53,8 @@ export default function ProduceDetailsPage() {
   const waMessage = encodeURIComponent(`Hello ${item.farmerId?.name}, I'm interested in buying your ${item.name} (${item.quantity} ${item.unit}) listed on Farmer2MarketLK.`);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Navbar />
-      
-      <main className="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    <div className="w-full">
+      <main className="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         <Link to="/marketplace" className="text-slate-500 hover:text-primary-600 font-medium flex items-center gap-1 mb-6 transition-colors">
           <ArrowLeft className="w-4 h-4" /> Back to Marketplace
         </Link>
