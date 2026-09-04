@@ -1,10 +1,9 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import api from '../../services/api';
 import { Link } from 'react-router-dom';
 import { Package, Plus, TrendingUp } from 'lucide-react';
 
 export default function FarmerDashboardPage() {
-  const queryClient = useQueryClient();
   const { data, isLoading } = useQuery({
     queryKey: ['farmerListings'],
     queryFn: async () => {
